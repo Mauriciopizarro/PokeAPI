@@ -1,5 +1,5 @@
 from pydantic_settings import BaseSettings
-
+from pydantic import ConfigDict
 
 class Settings(BaseSettings):
     POKEAPI_BASE_URL: str = "https://pokeapi.co/api/v2"
@@ -8,8 +8,7 @@ class Settings(BaseSettings):
     REDIS_DB: int = 0
     CACHE_EXPIRE: int = 3600
 
-    class Config:
-        env_file = '../.env'
+    model_config = ConfigDict(env_file='../.env')
 
 
 settings = Settings()
