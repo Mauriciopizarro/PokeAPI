@@ -1,18 +1,13 @@
-import os
+from app.config import settings
 import httpx
 from app.utils import calculate_stats
-from functools import lru_cache
 
 
-POKEAPI_BASE_URL = os.getenv("POKEAPI_BASE_URL", "https://pokeapi.co/api/v2")
-
-
-@lru_cache(maxsize=1)
 def get_all_berry_stats():
     """
     Get all berries from pokeapi and returns growth_time statistics .
     """
-    response = httpx.get(f"{POKEAPI_BASE_URL}/berry/?limit=1000")
+    response = httpx.get(f"{settings.POKEAPI_BASE_URL}/berry/?limit=1000")
     response.raise_for_status()
     berries_list = response.json()["results"]
 
