@@ -7,7 +7,7 @@ from app.utils import calculate_stats, generate_histogram
 
 
 async def fetch_all_berries():
-    response = httpx.get(f"{settings.POKEAPI_BASE_URL}/berry/?limit=1000", timeout=10)
+    response = httpx.get(f"{settings.POKEAPI_BASE_URL}/berry/?limit=1000", timeout=25)
     response.raise_for_status()
     berries_list = response.json()["results"]
 
